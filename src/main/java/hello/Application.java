@@ -1,7 +1,11 @@
 package hello;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import javax.sql.DataSource;
 
 // ----------- PART 1 ---------------
 // Run the application locally.
@@ -20,11 +24,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // curl localhost:8080/demo/all
 
 // TODO-15: Create fat jar
-// mvnw clean package
+// ./mvnw clean package
 
 // ----------- PART 2 ---------------
-// Run the application in PCF. Note that database credentials
-// are automatically created and used to create DataSource bean.
+// Run the application in PCF. Three key benefits to note
+// 1. You self-serve a backing service, MySQL database in this
+//    example (via "create-service")
+// 2. You don't have to configure database credentials.
+//    The database credentials are automatically set
+//    (via "bind-service")
+// 3. The same application runs locally and on PCF without
+//    any code change.  In other words, a "DataSource" bean
+//    gets created with proper settings depending on where
+//    it is being deployed (via Java Buildpack of PCF
+//    (See https://github.com/cloudfoundry/java-buildpack-auto-reconfiguration)
 
 // TODO-21: Log in to the PWS
 // cf login -a https://api.run.pivotal.io
@@ -57,5 +70,10 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    public CommandLineRunner commandLineRunner(DataSource dataSource) {
+        return args -> System.out.println("---> Datasource: " + dataSource);
     }
 }
