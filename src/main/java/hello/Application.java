@@ -10,17 +10,18 @@ import javax.sql.DataSource;
 // ----------- PART 1 ---------------
 // Run the application locally.
 
-// TODO-11: Start MySQL server
+// TODO-11: Install and start MySQL server
 
 // TODO-12: Using MySQL client, do the following
-// - mysql> create database db_example; -- Create the new database
-// - mysql> create user 'springuser'@'%' identified by 'ThePassword'; -- Creates the user
-// - mysql> grant all on db_example.* to 'springuser'@'%'; -- Gives all the privileges to the new user on the newly created database
+// mysql> create database db_example; -- Create the new database
+// mysql> create user 'springuser'@'%' identified by 'ThePassword'; -- Creates the user
+// mysql> grant all on db_example.* to 'springuser'@'%'; -- Gives all the privileges to the new user on the newly created database
 
 // TODO-13: Run this application
 
-// TODO-14: Add a new user and then access all users
+// TODO-14: Add a couple of new users and then access all users
 // curl -X POST localhost:8080/demo/add -d name=mary -d email=mary@gmail.com
+// curl -X POST localhost:8080/demo/add -d name=sang -d email=sang@gmail.com
 // curl localhost:8080/demo/all
 
 // TODO-15: Create fat jar
@@ -59,8 +60,8 @@ import javax.sql.DataSource;
 // TODO-26: Find out the route of your application
 // cf apps (route of the my-mysql-app will be displayed)
 
-// TODO-27: Assuming the route of your app is <my-mysql-app-route>
-//          access the application
+// TODO-27: Assuming the route of your app is <my-mysql-app-route>,
+//          add a couple of users and then access all users
 // curl -X POST <my-mysql-app-route>/demo/add -d name=mary -d email=mary@gmail.com
 // curl -X POST <my-mysql-app-route>/demo/add -d name=sang -d email=sang@gmail.com
 // curl <my-mysql-app-route>/demo/all
