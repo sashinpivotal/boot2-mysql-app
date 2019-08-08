@@ -73,6 +73,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    // Observe that different datasource bean gets created depending on
+    // where this application is deployed (local vs PCF)
     @Bean
     public CommandLineRunner commandLineRunner(DataSource dataSource) {
         return args -> System.out.println("---> Datasource: " + dataSource);
